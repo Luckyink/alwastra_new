@@ -1,0 +1,8 @@
+{
+  "name": "Alwastra",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "3fbe8f97"
+}

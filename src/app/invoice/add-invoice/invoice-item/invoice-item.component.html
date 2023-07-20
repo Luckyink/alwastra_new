@@ -1,0 +1,196 @@
+
+    <div class="section-header">
+      <ion-toolbar id="nav-invoice-header-bar">
+        <ion-title slot="start">Items</ion-title>
+        <ion-buttons slot="end">
+          <ion-button shape="round"  (click)="AddItemLink()">
+            <ion-icon slot="icon-only" name="add-circle" ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </div>
+    <dx-tile-view  
+    [baseItemHeight]="34*rowCount"
+    [baseItemWidth]="screenWidth - 5"
+    [itemMargin]="0"
+    showScrollbar="onScroll"
+    width="100%"
+    [height]="tileHeight"
+    [items]="invoiceItemFormArray"
+    itemTemplate="list-item"
+    >
+      
+      <div *dxTemplate="let item of 'list-item'; let i = index">
+        <dx-responsive-box>
+          <dxi-row ></dxi-row>
+          <dxi-row screen="xs sm"></dxi-row>
+          <dxi-col></dxi-col>
+          <dxi-col></dxi-col>
+          <dxi-col></dxi-col>
+          <dxi-col></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col></dxi-col>
+          
+          <dxi-item>
+            <dxi-location
+              [row]="0"
+              [col]="0"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{item.itemNo}}
+            </div>
+          </dxi-item>
+
+          <dxi-item>
+            <dxi-location
+              [row]="0"
+              [col]="1"
+              [colspan] = "2"
+              screen="md lg"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column text-secondary">
+              {{item.aName}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="xs sm">
+            <dxi-location
+              [row]="1"
+              [col]="0"
+              [colspan]="3"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column text-secondary">
+              {{item.aName}}
+            </div>
+          </dxi-item>
+
+          <dxi-item>
+            <dxi-location
+              [row]="0"
+              [col]="2"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              <span *ngIf="i == 0">{{item.price }}</span>
+              <span *ngIf="i != 0">{{item.quantity | number:'1.0':'en-US'}}</span>
+            </div>
+          </dxi-item>
+
+          <dxi-item>
+            <dxi-location
+              [row]="0"
+              [col]="3"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{item.unitName}}
+            </div>
+          </dxi-item>
+
+          <dxi-item>
+            <dxi-location
+              [row]="0"
+              [col]="4"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column text-danger">
+              <span *ngIf="i == 0">{{item.price }}</span>
+              <span *ngIf="i != 0">{{item.price | number:'1.0':'en-US'}}</span>
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="5"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              <span *ngIf="i == 0">{{item.discount }}</span>
+              <span *ngIf="i != 0">{{item.discount | number:'1.0':'en-US'}}</span>
+            </div>
+          </dxi-item>
+
+          
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="6"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              <span *ngIf="i == 0">{{item.total }}</span>
+              <span *ngIf="i != 0">{{item.total | number:'1.0':'en-US'}}</span>
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="7"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{item.taxRate1_Percentage}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="8"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              <span *ngIf="i == 0">{{item.taxRate1_Total }}</span>
+              <span *ngIf="i != 0">{{item.taxRate1_Total | number:'1.0':'en-US'}}</span>
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="9"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              <span *ngIf="i == 0">{{item.netValue }}</span>
+              <span *ngIf="i != 0">{{item.netValue | number:'1.0':'en-US'}}</span>
+            </div>
+          </dxi-item>
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="10"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              <ion-buttons *ngIf="i != 0">
+                <ion-button shape="round" size="small" class="text-danger" (click) = "confirmDeleteItemToast(i-1)">
+                  <ion-icon slot="icon-only" name="trash" ></ion-icon>
+                </ion-button>
+                <ion-button shape="round" size="small" class="text-secondary" (click)="editItem(i-1)">
+                  <ion-icon slot="icon-only" name="create-outline" ></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="xs sm">
+            <dxi-location
+              [row]="1"
+              [col]="4"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+                <ion-buttons *ngIf="i != 0">
+                  <ion-button shape="round" size="small" class="text-danger" (click) = "confirmDeleteItemToast(i-1)">
+                    <ion-icon slot="icon-only" name="trash"></ion-icon>
+                  </ion-button>
+                  <ion-button shape="round" size="small" class="text-secondary" (click)="editItem(i-1)">
+                    <ion-icon slot="icon-only" name="create-outline" ></ion-icon>
+                  </ion-button>
+                  
+                </ion-buttons>
+            </div>
+          </dxi-item>
+      </dx-responsive-box>
+      </div>
+          
+    </dx-tile-view>
+

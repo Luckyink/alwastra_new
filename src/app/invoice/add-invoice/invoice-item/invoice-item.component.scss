@@ -1,0 +1,27 @@
+.tile-column
+{
+    line-height:34px;
+    padding-left: 10px;
+    font-weight: bolder;
+}
+
+.tile-column .button-has-icon-only.button-clear {
+    --padding-top: 0px !important;
+    --padding-end: 0px !important;
+    --padding-bottom: 0px !important;
+    --padding-start: 0px !important; 
+    --border-radius: 50%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 34px;
+    width: 34px;
+    height: 34px;
+}
+
+
+dx-tile-view dxi-item
+{
+    border: 1px solid rgba(0,0,0, 0.5);
+}

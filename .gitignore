@@ -1,0 +1,10 @@
+.idea/
+.vscode/
+.angular/
+node_modules/
+build/
+tmp/
+temp/
+/nbproject/private/
+/android/
+www/

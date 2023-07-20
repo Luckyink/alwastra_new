@@ -1,0 +1,44 @@
+
+
+dxi-item  ion-button {
+    height: 100%;
+    width: 100%;
+  --background: none;
+
+  --color: #333;
+
+  --border-radius: 0;
+  --box-shadow: none;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
+
+dxi-item  ion-label
+{
+  font-size: 0.5em;
+} 
+
+.home-button-content
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ion-content{
+  --background:#d9d9d9;
+
+}
+
+.footer-segment
+{ 
+  grid-auto-columns:33.33%;
+}
+
+
+@media (min-width: 992px)
+{
+  .footer-segment {
+    max-width: 500px;
+  }
+}

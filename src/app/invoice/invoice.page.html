@@ -1,0 +1,252 @@
+
+<ion-header [translucent]="true" id="top-header">
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title class="ion-text-center">Purchase Invoice</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" id="content">
+  <div class="section-header">
+    <ion-toolbar id="nav-filter-bar">
+      <ion-title slot="start">Filter</ion-title>
+  
+      <ion-buttons slot="end" class="hidden-sm">
+        <ion-button size="small" (click)="toggleGridTileView()" class="dark-button">
+          <span *ngIf="!isGridView">Grid</span>
+          <span *ngIf="isGridView">Tile</span>
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button size="small" class="dark-button">Show</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+  <div id="filter-form" class="ion-padding" [formGroup]="invoiceFilterFormGroup">
+    <!-- comment because of incompatibility of dx form with current angular i prefer to use dx responsive box-->  
+
+    <dx-responsive-box>
+                  <dxi-row></dxi-row>
+                  <dxi-row screen="xs sm"></dxi-row>
+                  <dxi-row screen="xs sm"></dxi-row>
+                  <dxi-row screen="xs sm"></dxi-row>
+                  
+                  <dxi-col></dxi-col>
+                  <dxi-col screen="md lg"></dxi-col>
+                  <dxi-col screen="md lg"></dxi-col>
+                  <dxi-col screen="md lg"></dxi-col>
+
+                  <!-- range -->
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="0"
+                      [col]="0"
+                    ></dxi-location>
+
+                      <div class="form-control">
+                        <dx-date-range-box
+                          formControlName="dateRange"
+                        >
+                        </dx-date-range-box>
+
+                      </div>
+
+                  </dxi-item>
+                  <!-- end range -->
+
+                <!-- small screen -->
+                  <!-- vendor -->
+                <dxi-item class="filter-form-item">
+                  <dxi-location
+                    [row]="1"
+                    [col]="0"
+                    screen="xs sm"
+                  ></dxi-location>
+                  <div class="form-control">
+                    <div class="dx-field-label">Vendor</div>
+                    <div class="dx-field-value">
+                      <dx-select-box
+                        valueExpr="ClientVendorNo"
+                        displayExpr="eName"
+                        [items]="vendors" 
+                        formControlName="clientVendorNo"
+                        placeholder="Choose Vendor"
+                        [showClearButton]="true"
+                      ></dx-select-box>
+                    </div>
+                  </div>
+                  
+              </dxi-item>
+              <!-- end vendor -->
+
+              <!-- building -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="2"
+                  [col]="0"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+
+                  <div class="dx-field-label">Branch</div>
+                  <div class="dx-field-value">
+                    <dx-select-box
+                      valueExpr="buildingNo"
+                      displayExpr="eName"
+                      [items]="buildings" 
+                      formControlName="buildingNo"
+                      placeholder="Choose Branch"
+                      [showClearButton]="true"
+                    ></dx-select-box>
+                  </div>
+              </div>
+              </dxi-item>
+              <!-- end building -->
+
+              <!-- contact -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="3"
+                  [col]="0"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+
+                  <div class="dx-field-label">Contact</div>
+                  <div class="dx-field-value">
+                    <dx-text-box formControlName="contact"></dx-text-box>
+                  </div>
+              </div>
+              </dxi-item>
+              <!-- end contact -->
+
+              <!--end small screen-->
+
+              <!-- large screen-->
+              <!-- vendor -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="2"
+                  screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <div class="dx-field-label">Vendor</div>
+                  <div class="dx-field-value">
+                    <dx-select-box
+                      valueExpr="ClientVendorNo"
+                      displayExpr="eName"
+                      [items]="vendors" 
+                      formControlName="clientVendorNo"
+                      placeholder="Choose Vendor"
+                      [showClearButton]="true"
+                    ></dx-select-box>
+                  </div>
+                </div>
+                
+            </dxi-item>
+            <!-- end vendor -->
+
+            <!-- building -->
+            <dxi-item class="filter-form-item">
+              <dxi-location
+                [row]="0"
+                [col]="1"
+                screen="md lg"
+              ></dxi-location>
+              <div class="form-control">
+
+                <div class="dx-field-label">Branch</div>
+                <div class="dx-field-value">
+                  <dx-select-box
+                    valueExpr="buildingNo"
+                    displayExpr="eName"
+                    [items]="buildings" 
+                    formControlName="buildingNo"
+                    placeholder="Choose Branch"
+                    [showClearButton]="true"
+                  ></dx-select-box>
+                </div>
+            </div>
+            </dxi-item>
+            <!-- end building -->
+
+            <!-- contact -->
+            <dxi-item class="filter-form-item">
+              <dxi-location
+                [row]="0"
+                [col]="3"
+                screen="md lg"
+              ></dxi-location>
+              <div class="form-control">
+
+                <div class="dx-field-label">Contact</div>
+                <div class="dx-field-value">
+                  <dx-text-box formControlName="contact"></dx-text-box>
+                </div>
+            </div>
+            </dxi-item>
+            <!-- end contact -->
+              <!-- end large screen-->    
+
+
+
+      </dx-responsive-box>
+    <!-- comment because of incompatibility of dx form with current angular-->
+    <!-- <dx-form
+    [formData] = "invoiceFilter"
+    [showColonAfterLabel]="false"
+    >
+    <dxo-col-count-by-screen [xs]="1" [sm]="2" [md]="3" [lg]="4"></dxo-col-count-by-screen>
+
+      <dxi-item class="filter-form-item"  itemType="group">
+        <dxo-col-count-by-screen [xs]="2" [sm]="2" [md]="2" [lg]="2"></dxo-col-count-by-screen>
+
+        <dxi-item class="filter-form-item" dataField="from"></dxi-item>
+        <dxi-item class="filter-form-item" dataField="to"></dxi-item>
+      </dxi-item>
+      
+      <dxi-item
+        dataField="branch"
+        editorType="dxSelectBox"
+      >
+        <dxo-label template="branch"></dxo-label>
+      </dxi-item>
+      <dxi-item
+        dataField="vendor"
+        editorType="dxSelectBox"
+      >
+        <dxo-label template="vendor"></dxo-label>
+      </dxi-item>
+      <dxi-item class="filter-form-item" dataField="contact"></dxi-item>
+    </dx-form> -->
+
+
+
+  </div>
+  <div class="section-header">
+    <ion-toolbar id="nav-invoice-header-bar">
+      <ion-title slot="start">Invoices</ion-title>
+  
+      <ion-buttons slot="end" class="hidden-lg">
+        <ion-button size="small" (click)="toggleGridTileView()" class="dark-button">
+          <span *ngIf="!isGridView">Grid</span>
+          <span *ngIf="isGridView">Tile</span>
+        </ion-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button shape="round" routerLink="/add-invoice">
+          <ion-icon slot="icon-only" name="add-circle" ></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </div>
+  <app-invoice-tile *ngIf="!isGridView" [dateRange]="dateRange" [branch]="branch" [vendor]="vendor" [contact]="contact"></app-invoice-tile>
+  
+  <app-invoice-grid *ngIf="isGridView"  class="ion-padding"></app-invoice-grid>
+  <div class="bottom-spacer"></div>
+</ion-content>
+

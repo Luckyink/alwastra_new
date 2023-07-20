@@ -1,0 +1,85 @@
+<ion-header [translucent]="true" id="top-header">
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title class="ion-text-center">Home</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" id="content">
+  <div id="container" class="container">
+    <dx-tile-view class="dx-tile-content" [direction]="tileDirection"  width="100%" colCount="auto">
+      <dxi-item >
+        <ion-button>
+          <div class="home-button-content">
+            <ion-icon name="cart-outline" size="large" class="ion-margin-bottom"></ion-icon>
+            <ion-label text-wrap>POS Sale Invoice</ion-label>
+          </div>
+        </ion-button>
+      </dxi-item>
+      <dxi-item >
+        <ion-button routerDirection="root" routerLink="/invoice" routerLinkActive="selected">
+          <div class="home-button-content">
+            <ion-icon name="calculator-outline" size="large" class="ion-margin-bottom"></ion-icon>
+            <ion-label text-wrap>Purchase Invoice</ion-label>
+          </div>
+        </ion-button>
+      </dxi-item>
+      <dxi-item >
+        <ion-button>
+          <div class="home-button-content">
+            <ion-icon name="repeat" size="large" class="ion-margin-bottom"></ion-icon>
+            <ion-label text-wrap>Sale Invoice Return</ion-label>
+          </div>
+        </ion-button>
+      </dxi-item>
+      <dxi-item >
+        <ion-button>
+          <div class="home-button-content">
+            <ion-icon name="swap-vertical" size="large" class="ion-margin-bottom"></ion-icon>
+            <ion-label text-wrap>Purchase Invoice Return</ion-label>
+          </div>
+        </ion-button>
+      </dxi-item>
+      <dxi-item >
+        <ion-button>
+          <div class="home-button-content">
+            <ion-icon name="cart-outline" size="large" class="ion-margin-bottom"></ion-icon>
+            <ion-label text-wrap>Payment Bill</ion-label>
+          </div>
+        </ion-button>
+      </dxi-item>
+      <dxi-item >
+        <ion-button>
+          <div class="home-button-content">
+            <ion-icon name="cart-outline" size="large" class="ion-margin-bottom"></ion-icon>
+            <ion-label text-wrap>Receive Bill</ion-label>
+          </div>
+        </ion-button>
+      </dxi-item>
+      <dxi-item >
+        <ion-button>
+          <div class="home-button-content">
+            <ion-icon name="cart-outline" size="large" class="ion-margin-bottom"></ion-icon>
+            <ion-label text-wrap>Client Vendor Begining Bal.</ion-label>
+          </div>
+        </ion-button>
+      </dxi-item>
+    </dx-tile-view>
+ </div>
+
+ <ion-segment [(ngModel)]="segment" class="footer-segment">
+  <ion-segment-button value="infraData">
+    <ion-label>InfraData</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="transactions">
+    <ion-label>Transactions</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="reports">
+    <ion-label>Reports</ion-label>
+  </ion-segment-button>
+</ion-segment>
+</ion-content>
+

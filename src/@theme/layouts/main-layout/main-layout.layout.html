@@ -1,0 +1,23 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-menu-button *ngIf="showMenuButton"></ion-menu-button>
+      <ion-button *ngIf="showBackButton" (click)="goBack()">
+        <ion-icon slot="icon-only" name="return-down-back-sharp" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-title class="ion-text-center">{{routeName}}</ion-title>
+
+    <ion-buttons slot="end" >
+      <ion-button *ngIf="showSaveButton" (click)="saveInvoice()">
+        <ion-icon slot="icon-only" name="save" ></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="showMarkButton" >
+        <ion-icon slot="icon-only" name="checkmark-sharp" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content id="content">
+</ion-content>

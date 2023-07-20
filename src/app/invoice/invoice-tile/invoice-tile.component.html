@@ -1,0 +1,334 @@
+
+<dx-tile-view  
+    [baseItemHeight]="34*rowCount"
+    [baseItemWidth]="screenWidth - 5"
+    [itemMargin]="0"
+    showScrollbar="onScroll"
+    width="100%"
+    [height]="tileHeight"
+    [items]="invoices"
+    itemTemplate="list-item"
+    >
+      
+      <div *dxTemplate="let invoice of 'list-item'; let i = index">
+        <dx-responsive-box>
+          <dxi-row ></dxi-row>
+          <dxi-row screen="xs sm"></dxi-row>
+          <dxi-row screen="xs sm"></dxi-row>
+          <dxi-row screen="xs sm"></dxi-row>
+          <dxi-col></dxi-col>
+          <dxi-col></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          <dxi-col screen="md lg"></dxi-col>
+          
+
+          <dxi-item>
+            <dxi-location
+              [row]="0"
+              [col]="0"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.invoiceNo}}
+            </div>
+          </dxi-item>
+
+          <dxi-item>
+            <dxi-location
+              [row]="0"
+              [col]="1"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column ion-text-end">
+              {{invoice.dateG | date:'mediumDate'}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="2"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.VendorAraName}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="xs sm">
+            <dxi-location
+              [row]="1"
+              [col]="0"
+              [colspan]="2"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.VendorAraName}}
+            </div>
+          </dxi-item>
+          
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="3"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.VendorEngName}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="xs sm">
+            <dxi-location
+              [row]="2"
+              [col]="0"
+              [colspan]="2"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.VendorEngName}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="4"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.Posted}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="5"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.tell}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="6"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.subTotal}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="xs sm">
+            <dxi-location
+              [row]="3"
+              [col]="0"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.subTotal}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="md lg">
+            <dxi-location
+              [row]="0"
+              [col]="7"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column tile-button">
+              <!-- <ion-toolbar> -->
+                <ion-buttons>
+                  <ion-button shape="round" size="small">
+                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              <!-- </ion-toolbar> -->
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="xs sm">
+            <dxi-location
+              [row]="3"
+              [col]="1"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column tile-button">
+              <ion-toolbar>
+                <ion-buttons slot="end">
+                  <ion-button shape="round" size="small" >
+                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </div>
+          </dxi-item>
+      </dx-responsive-box>
+      </div>
+          
+    </dx-tile-view>
+    <ion-infinite-scroll>
+      <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+<!-- <dx-tile-view  
+[baseItemHeight]="34*rowCount"
+[baseItemWidth]="screenWidth - 30"
+[itemMargin]="10"
+showScrollbar="onScroll"
+width="100%"
+[height]="tileHeight"
+>
+<dxi-item
+        *ngFor="let invoice of tileViewData"
+        [widthRatio]="1"
+        [heightRatio]="1">
+        <dx-responsive-box>
+          <dxi-row ></dxi-row>
+          <dxi-row screen="xs sm"></dxi-row>
+          <dxi-row screen="xs sm"></dxi-row>
+          <dxi-row screen="xs sm"></dxi-row>
+          <dxi-col></dxi-col>
+          <dxi-col></dxi-col>
+          <dxi-col screen=" md lg"></dxi-col>
+          <dxi-col screen=" md lg"></dxi-col>
+          <dxi-col screen=" md lg"></dxi-col>
+          <dxi-col screen=" md lg"></dxi-col>
+          <dxi-col screen=" md lg"></dxi-col>
+          <dxi-col screen=" md lg"></dxi-col>
+          
+          <dxi-item>
+            <dxi-location
+              [row]="0"
+              [col]="0"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.invoiceNumber}}
+            </div>
+          </dxi-item>
+
+          <dxi-item>
+            <dxi-location
+              [row]="0"
+              [col]="1"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.invoiceDate}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen=" md lg">
+            <dxi-location
+              [row]="0"
+              [col]="2"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.VendorAraName}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="xs sm">
+            <dxi-location
+              [row]="1"
+              [col]="0"
+              [colspan]="2"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.VendorAraName}}
+            </div>
+          </dxi-item>
+          
+          <dxi-item screen=" md lg">
+            <dxi-location
+              [row]="0"
+              [col]="3"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.VendorEngName}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="xs sm">
+            <dxi-location
+              [row]="2"
+              [col]="0"
+              [colspan]="2"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.VendorEngName}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen=" md lg">
+            <dxi-location
+              [row]="0"
+              [col]="4"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.Posted}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen=" md lg">
+            <dxi-location
+              [row]="0"
+              [col]="5"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.Contact}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen=" md lg">
+            <dxi-location
+              [row]="0"
+              [col]="6"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.InvoiceValue}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="xs sm">
+            <dxi-location
+              [row]="3"
+              [col]="0"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column">
+              {{invoice.InvoiceValue}}
+            </div>
+          </dxi-item>
+
+          <dxi-item screen=" md lg">
+            <dxi-location
+              [row]="0"
+              [col]="7"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column tile-button">
+              // <ion-toolbar> 
+                <ion-buttons>
+                  <ion-button shape="round" size="small">
+                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              // </ion-toolbar>
+            </div>
+          </dxi-item>
+
+          <dxi-item screen="xs sm">
+            <dxi-location
+              [row]="3"
+              [col]="1"
+            ></dxi-location>
+            <div *dxTemplate class="tile-column tile-button">
+              <ion-toolbar>
+                <ion-buttons slot="end">
+                  <ion-button shape="round" size="small" >
+                    <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </div>
+          </dxi-item>
+
+        </dx-responsive-box>
+</dxi-item>
+
+</dx-tile-view> -->

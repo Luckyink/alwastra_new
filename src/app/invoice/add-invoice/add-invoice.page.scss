@@ -1,0 +1,28 @@
+#invoice-form
+{
+    --background: #efefef;
+    background-color: #efefef;
+}
+
+#invoice-summary .dx-field-label
+{
+    // word-wrap: break-word;
+    text-overflow:inherit;
+}
+
+
+::ng-deep .dx-form-group-with-caption {
+    text-align: right; 
+}
+
+::ng-deep .dx-form-group-with-caption > .dx-form-group-content {
+    border-top: unset;  
+}
+
+::ng-deep .dx-form-group-caption{
+    color:#a47b5e;
+    font-weight: bolder;
+}
+
+
+  

@@ -1,0 +1,616 @@
+<ion-header [translucent]="true" id="top-header">
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="goBack()">
+      <ion-button>
+        <ion-icon slot="icon-only" name="return-down-back-sharp" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-title class="ion-text-center">Purchase Invoice</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="saveInvoice()">
+        <ion-icon slot="icon-only" name="save" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" id="content">
+  <div [ngSwitch]="segment" [formGroup]="invoiceFormGroup">
+    <div id="invoice-form" class="ion-padding">
+      <dx-box id="invoice-form-top-box"
+        direction="row"
+        width="100%">
+        <dxi-item [ratio]="2">
+          <div *dxTemplate>
+            <dx-responsive-box>
+              <dxi-row ></dxi-row>
+              <dxi-row ></dxi-row>
+              <dxi-row ></dxi-row>
+              <dxi-row ></dxi-row>
+              <dxi-row ></dxi-row>
+              <dxi-row screen="xs sm"></dxi-row>
+              <dxi-row screen="xs sm"></dxi-row>
+              
+              <dxi-col screen="md lg"></dxi-col>
+              <dxi-col></dxi-col>
+
+              <!-- date -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="0"
+                ></dxi-location>
+                  <div class="form-control">
+                    <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                    <div class="dx-field-label">Date</div>
+                    <div class="dx-field-value">
+                      <dx-date-box formControlName="dateG" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+                    </div>
+                  </div>
+                </div>
+              </dxi-item>
+              <!-- end date -->
+              <!-- vendor -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="1"
+                  [col]="0"
+                ></dxi-location>
+                  <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                    <div class="dx-field-label">Vendor</div>
+                    <div class="dx-field-value">
+                      <dx-select-box
+                        valueExpr="clientVendorNo"
+                        displayExpr="eName"
+                        [items]="vendors" 
+                        formControlName="clientVendorNo"
+                        placeholder="Choose Vendor"
+                        [showClearButton]="true"
+                      ></dx-select-box>
+                    </div>
+                  </div>
+                  </div>
+                  
+              </dxi-item>
+              <!-- end vendor -->
+              <!-- arabic name -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="2"
+                  [col]="0"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">Arabic Name</div>
+                  <div class="dx-field-value">
+                    <dx-text-box formControlName="aName"></dx-text-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+              <!-- end arabic name -->
+              <!-- tel -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="3"
+                  [col]="0"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">Tel.</div>
+                  <div class="dx-field-value">
+                    <dx-text-box formControlName="tel"></dx-text-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+              <!-- end tel -->
+
+
+              <!-- building -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="1"
+                  screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">Branch</div>
+                  <div class="dx-field-value">
+                    <dx-select-box
+                      valueExpr="buildingNo"
+                      displayExpr="eName"
+                      [items]="buildings" 
+                      formControlName="buildingNo"
+                      placeholder="Choose Branch"
+                      [showClearButton]="true"
+                    ></dx-select-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="4"
+                  [col]="0"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">Branch</div>
+                  <div class="dx-field-value">
+                      <dx-select-box
+                        valueExpr="buildingNo"
+                        displayExpr="eName"
+                        [items]="buildings" 
+                        formControlName="buildingNo"
+                        placeholder="Choose Branch"
+                        [showClearButton]="true"
+                      ></dx-select-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+              <!-- end building -->
+            </dx-responsive-box>
+          </div>
+        </dxi-item>
+
+        <dxi-item [ratio]="1" id="invoice-summary">
+          <div *dxTemplate>
+                <dx-responsive-box>
+                  <dxi-row ></dxi-row>
+                  <dxi-row ></dxi-row>
+                  <dxi-row ></dxi-row>
+                  <dxi-row ></dxi-row>
+                  <dxi-row ></dxi-row>
+                  <dxi-row screen="xs sm"></dxi-row>
+                  <dxi-row screen="xs sm"></dxi-row>
+                  
+                  <dxi-col screen="md lg"></dxi-col>
+                  <dxi-col></dxi-col>
+        
+                  
+        
+                  <!-- invoice number -->
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="0"
+                      [col]="1"
+                      screen="md lg"
+                    ></dxi-location>
+                      <div class="dx-field-value detail-bolder">Invoice #</div>
+                  </dxi-item>
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="0"
+                      [col]="0"
+                      screen="xs sm"
+                    ></dxi-location>
+        
+                    <div class="dx-field-value detail-bolder">Invoice #</div>
+        
+                  </dxi-item>
+                  <!-- end invoice number -->
+        
+                  <!-- invoice total -->
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="1"
+                      [col]="1"
+                      screen="md lg"
+                    ></dxi-location>
+                    <div class="form-control">
+                      <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+        
+                      <div class="dx-field-label">Total</div>
+                      <div class="dx-field-value detail-bolder">{{invoiceFormGroup.get("subTotal")?.value | number:'1.0':'en-US'}}</div>
+                    </div>
+                  </div>
+                  </dxi-item>
+        
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="1"
+                      [col]="0"
+                      screen="xs sm"
+                    ></dxi-location>
+                    <div class="form-control">
+                      <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                      <div class="dx-field-label">Total</div>
+                      <div class="dx-field-value detail-bolder">{{invoiceFormGroup.get("subTotal")?.value | number:'1.0':'en-US'}}</div>
+                    </div>
+                  </div>
+                  </dxi-item>
+                  <!-- end invoice total -->
+        
+                  <!-- discount -->
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="2"
+                      [col]="1"
+                      screen="md lg"
+                    ></dxi-location>
+                    <div class="form-control">
+                      <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                      <div class="dx-field-label">Discount</div>
+                      <div class="dx-field-value detail-bolder">{{invoiceFormGroup.get("subTotalDiscount")?.value | number:'1.0':'en-US'}}</div>
+                    </div>
+                  </div>
+                  </dxi-item>
+                  
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="2"
+                      [col]="0"
+                      screen="xs sm"
+                    ></dxi-location>
+                      <div class="form-control">
+                      <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                        <div class="dx-field-label">Discount</div>
+                        <div class="dx-field-value detail-bolder">{{invoiceFormGroup.get("subTotalDiscount")?.value | number:'1.0':'en-US'}}</div>
+                      </div>
+                    </div>
+                  </dxi-item>
+                  <!-- end discount -->
+        
+                  <!-- VAT -->
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="3"
+                      [col]="1"
+                      screen="md lg"
+                    ></dxi-location>
+                      <div class="form-control">
+                      <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                        <div class="dx-field-label">VAT</div>
+                        <div class="dx-field-value detail-bolder">{{invoiceFormGroup.get("taxRate1_Total")?.value | number:'1.0':'en-US'}}</div>
+                      </div>
+                    </div>
+                    </dxi-item>
+                  
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="3"
+                      [col]="0"
+                      screen="xs sm"
+                    ></dxi-location>
+                    <div class="form-control">
+                      <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                      <div class="dx-field-label">VAT</div>
+                      <div class="dx-field-value detail-bolder">{{invoiceFormGroup.get("taxRate1_Total")?.value | number:'1.0':'en-US'}}</div>
+                    </div>
+                  </div>
+                  </dxi-item>
+                  <!-- end VAT -->
+        
+                  <!-- net -->
+                  <dxi-item class="filter-form-item border-bottom">
+                    <dxi-location
+                      [row]="4"
+                      [col]="1"
+                      screen="md lg"
+                    ></dxi-location>
+                      <div class="form-control">
+                      <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                        <div class="dx-field-label">Net + VAT</div>
+                        <div class="dx-field-value detail-bolder">{{invoiceFormGroup.get("subNetTotalPlusTax")?.value | number:'1.0':'en-US'}}</div>
+                      </div>
+                    </div>
+                    </dxi-item>
+                  
+                  <dxi-item class="filter-form-item border-bottom">
+                    <dxi-location
+                      [row]="4"
+                      [col]="0"
+                      screen="xs sm"
+                    ></dxi-location>
+                      <div class="form-control">
+                      <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                        <div class="dx-field-label">Net + VAT</div>
+                        <div class="dx-field-value detail-bolder">{{invoiceFormGroup.get("subNetTotalPlusTax")?.value | number:'1.0':'en-US'}}</div>
+                      </div>
+                    </div>
+                  </dxi-item>
+                  <!-- end net -->
+        
+                  <!-- post button -->
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="3"
+                      [col]="0"
+                      screen="md lg"
+                    ></dxi-location>
+                      <ion-button size="small" class="dark-button" expand="block" [disabled]="!invoiceFormGroup.valid">
+                        Post
+                      </ion-button>
+                  </dxi-item>
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="5"
+                      [col]="0"
+                      screen="xs sm"
+                    ></dxi-location>
+                      <ion-button size="small" class="dark-button" expand="block" [disabled]="!invoiceFormGroup.valid">
+                        Post
+                      </ion-button>
+                  </dxi-item>
+                  <!-- post end button -->
+        
+                  <!-- new invoice button -->
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="4"
+                      [col]="0"
+                      screen="md lg"
+                    ></dxi-location>
+                      <ion-button size="small" class="dark-button" expand="block">
+                        New Invoice
+                      </ion-button>
+                  </dxi-item>
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="6"
+                      [col]="0"
+                      screen="xs sm"
+                    ></dxi-location>
+                      <ion-button size="small" class="dark-button" expand="block">
+                        New Invoice
+                      </ion-button>
+                  </dxi-item>
+                  <!-- end new invoice button -->
+        </dx-responsive-box>
+      </div>
+      </dxi-item>
+    </dx-box>
+      <dx-box id="invoice-form-bottom-box"
+        [direction]="rowCount == 1? 'row' : 'col'"
+        [height] = "rowCount == 1? 'auto' : '150'"
+        width="100%">
+        <dxi-item [ratio]="rowCount == 1? 2 : 1">
+          <div *dxTemplate>
+            <dx-responsive-box>
+              <dxi-row ></dxi-row>
+              <dxi-row screen="md lg"></dxi-row>
+              <dxi-col></dxi-col>
+              <dxi-col screen="md lg"></dxi-col>
+
+              <!-- barcode name -->
+              <dxi-item class="filter-form-item" itemType="empty">
+                <dxi-location
+                  [row]="0"
+                  [col]="0"
+                  screen="md lg"
+                ></dxi-location>
+              </dxi-item>
+
+              <dxi-item class="filter-form-item" itemType="empty">
+                <dxi-location
+                  [row]="0"
+                  [col]="1"
+                  screen="md lg"
+                ></dxi-location>
+              </dxi-item>
+
+              <dxi-item class="filter-form-item" itemType="empty">
+                <dxi-location
+                  [row]="1"
+                  [col]="1"
+                  screen="md lg"
+                ></dxi-location>
+              </dxi-item>
+
+
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="1"
+                  [col]="0"
+                  screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">Barcode Search</div>
+                  <div class="dx-field-value">
+                    <dx-text-box ></dx-text-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="0"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">Barcode Search</div>
+                  <div class="dx-field-value">
+                    <dx-text-box ></dx-text-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+              <!-- end barcode name -->
+
+            </dx-responsive-box>
+          </div>
+        </dxi-item>
+        <dxi-item [ratio]="1">
+          <div *dxTemplate>
+            <dx-responsive-box>
+              <dxi-row ></dxi-row>
+              <dxi-row screen="md lg"></dxi-row>
+              <dxi-col></dxi-col>
+              <dxi-col></dxi-col>
+              <dxi-col screen="xs sm"></dxi-col>
+              <dxi-col screen="xs sm"></dxi-col>
+
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="0"
+                  screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">Cash</div>
+                  <div class="dx-field-value">
+                    <dx-number-box [min]="0" formControlName="amountPayed01"></dx-number-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                [row]="0"
+                [col]="1"
+                screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">SPAN</div>
+                  <div class="dx-field-value">
+                    <dx-number-box [min]="0" formControlName="amountPayed02"></dx-number-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                [row]="1"
+                [col]="1"
+                screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">Left Amount</div>
+                  <div class="dx-field-value">
+                    <dx-number-box formControlName="amountLeft"></dx-number-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                [row]="1"
+                [col]="0"
+                screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">VISA</div>
+                  <div class="dx-field-value">
+                    <dx-number-box [min]="0" formControlName="amountPayed03"></dx-number-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+
+              
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="0"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">Cash</div>
+                  <div class="dx-field-value">
+                    <dx-number-box [min]="0" formControlName="amountPayed01"></dx-number-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="1"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">SPAN</div>
+                  <div class="dx-field-value">
+                    <dx-number-box [min]="0" formControlName="amountPayed02"></dx-number-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="2"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+
+                  <div class="dx-field-label">VISA</div>
+                  <div class="dx-field-value">
+                    <dx-number-box   [min]="0" formControlName="amountPayed03"></dx-number-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="3"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                  <div class="dx-field-label">Left Amount</div>
+                  <div class="dx-field-value">
+                    <dx-number-box formControlName="amountLeft"></dx-number-box>
+                  </div>
+                </div>
+              </div>
+              </dxi-item>
+            </dx-responsive-box>
+          </div>
+        </dxi-item>
+       
+    </dx-box>
+    </div>
+    <div *ngSwitchCase="'items'">
+      <app-invoice-item></app-invoice-item>
+    </div>
+    <div *ngSwitchCase="'others'">
+      <app-invoice-other></app-invoice-other>
+    </div>
+  </div>
+  <div class="bottom-spacer"></div>
+
+  <ion-segment [(ngModel)]="segment" class="footer-segment">
+    <ion-segment-button value="items">
+      <ion-label>Items</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="others">
+      <ion-label>Others</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+</ion-content>
+
+

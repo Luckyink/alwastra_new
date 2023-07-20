@@ -1,0 +1,438 @@
+
+<div class="section-header">
+  <ion-toolbar>
+    <ion-title slot="start">Other Data</ion-title>
+  </ion-toolbar>
+</div>
+<div id="invoice-other-form" class="ion-padding" [formGroup]="invoiceFormGroup">
+  <dx-responsive-box>
+              <dxi-row></dxi-row>
+              <dxi-row></dxi-row>
+              <dxi-row></dxi-row>
+              <dxi-row></dxi-row>
+              <dxi-row></dxi-row>
+              <dxi-row></dxi-row>
+              <dxi-row></dxi-row>
+              <dxi-col></dxi-col>
+              <dxi-col></dxi-col>
+
+              <!-- small screen -->
+              <!-- store -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="0"
+                ></dxi-location>
+                  <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                    <div class="dx-field-label">Store</div>
+                    <div class="dx-field-value">
+                      <dx-select-box
+                        valueExpr="storeNo"
+                        displayExpr="eName"
+                        [items]="stores" 
+                        formControlName="storeNo"
+                        placeholder="Choose Store"
+                        [showClearButton]="true"
+                      ></dx-select-box>
+                    </div>
+                  </div>
+                  </div>
+                  
+              </dxi-item>
+              <!-- end store -->
+
+              <!-- ename -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="0"
+                  [col]="1"
+                  screen="xs sm"
+                ></dxi-location>
+                  <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                    <div class="dx-field-label">English Name</div>
+                    <div class="dx-field-value">
+                      <dx-text-box formControlName="eName"></dx-text-box>
+                    </div>
+                  </div>
+                  </div>
+                  
+              </dxi-item>
+              <!-- end ename -->
+
+              <!-- payed Total -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="1"
+                  [col]="0"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <div  [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                  <div class="dx-field-label">Payed Total</div>
+                  <div class="dx-field-value">
+                    <dx-number-box  placeholder="Payed Total" formControlName="amountCalculatedPayed" [disabled]="true"></dx-number-box>
+                  </div>
+                  </div>
+                </div>
+              </dxi-item>
+              <!-- end payed Total -->
+
+              <!-- original bill #-->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="1"
+                  [col]="1"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <div  [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                    <div class="dx-field-label">Original bill #</div>
+                    <div class="dx-field-value" >
+                      <dx-number-box  placeholder="Original bill #" formControlName="billNo"></dx-number-box>
+                    </div>
+                  </div>
+              </div>
+              </dxi-item>
+              <!-- end original bill #-->
+
+              <!-- vat # -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="2"
+                  [col]="0"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <div  [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                  <div class="dx-field-label">VAT #</div>
+                  <div class="dx-field-value" >
+                    <dx-number-box  placeholder="VAT #" formControlName="VATGroupNo"></dx-number-box>
+                  </div>
+                  </div>
+                </div>
+              </dxi-item>
+              <!-- end  vat # -->
+
+              <!-- vat type -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="2"
+                  [col]="1"
+                  screen="xs sm"
+                ></dxi-location>
+                  <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                    <div class="dx-field-label">VATTypeNo</div>
+                    <div class="dx-field-value">
+                      <dx-select-box
+                        valueExpr="VATTypeNo"
+                        displayExpr="aName"
+                        [items]="vattypes" 
+                        formControlName="VATTypeNo"
+                        placeholder="Choose VAT Type"
+                        [showClearButton]="true"
+                      ></dx-select-box>
+                    </div>
+                  </div>
+                  </div>
+                  
+              </dxi-item>
+              <!-- end vat type -->
+
+              <!-- posted -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="3"
+                  [col]="0"
+                  screen="xs sm"
+                ></dxi-location>
+                  <div class="form-control">
+                    <div class="flex-row">
+                      <div class="dx-field-value ion-text-start">
+                        <dx-check-box  formControlName="isPosted"></dx-check-box>
+                      </div>
+                      <div class="dx-field-label ion-text-end">Posted</div>
+                    </div>
+                  </div>
+              </dxi-item>
+              <!-- end posted -->
+
+              <!-- apply vat effect -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="3"
+                  [col]="1"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <ion-button size="small" class="dark-button" expand="block">
+                    Apply VAT Effect
+                  </ion-button>
+                </div>
+                 
+              </dxi-item>
+              <!-- end apply vat effect -->
+
+              <!-- note -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="4"
+                  [col]="0"
+                  [colspan]="2"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <div  [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                  <div class="dx-field-label">Note</div>
+                  <div class="dx-field-value" >
+                    <!-- <dx-number-box  placeholder="VAT #" formControlName="VATGroupNo"></dx-number-box> -->
+                    <dx-text-area
+                      formControlName="note"
+                      [height]="102"
+                      [autoResizeEnabled]="true"
+                    >
+                    </dx-text-area>
+                  </div>
+                  </div>
+                </div>
+              </dxi-item>
+              <!-- end note -->
+
+              <!-- return invoice -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="5"
+                  [col]="0"
+                  [colspan]="2"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <ion-button size="small" class="dark-button" expand="block">
+                    Return Invoice
+                  </ion-button>
+                </div>
+                  
+              </dxi-item>
+              <!-- end return invoice -->
+
+              <!-- print -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="6"
+                  [col]="0"
+                  [colspan]="2"
+                  screen="xs sm"
+                ></dxi-location>
+                <div class="form-control">
+                  <ion-button size="small" class="dark-button" expand="block">
+                    Print
+                  </ion-button>
+                </div>
+                  
+              </dxi-item>
+              <!-- end print -->
+
+              <!-- end small screen -->
+
+              <!-- large screen -->
+                <!-- payed Total -->
+                  <dxi-item class="filter-form-item">
+                    <dxi-location
+                      [row]="0"
+                      [col]="1"
+                      screen="md lg"
+                    ></dxi-location>
+                    <div class="form-control">
+                      <div  [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                      <div class="dx-field-label">Payed Total</div>
+                      <div class="dx-field-value">
+                        <dx-number-box  placeholder="Payed Total" formControlName="amountCalculatedPayed" [disabled]="true"></dx-number-box>
+                      </div>
+                      </div>
+                    </div>
+                  </dxi-item>
+                <!-- end payed Total -->
+
+                <!-- ename -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="1"
+                  [col]="0"
+                  screen="md lg"
+                ></dxi-location>
+                  <div class="form-control">
+                  <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                    <div class="dx-field-label">English Name</div>
+                    <div class="dx-field-value">
+                      <dx-text-box formControlName="eName"></dx-text-box>
+                    </div>
+                  </div>
+                  </div>
+                  
+              </dxi-item>
+              <!-- end ename -->
+
+              <!-- vat type -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="1"
+                  [col]="1"
+                  screen="md lg"
+                ></dxi-location>
+                <div *dxTemplate>
+                  <dx-responsive-box>
+                    <dxi-row></dxi-row>
+                    <dxi-col></dxi-col>
+                    <dxi-col></dxi-col>
+                    <dxi-item class="filter-form-item">
+                      <dxi-location
+                      [row]="0"
+                      [col]="0"
+                    ></dxi-location>
+                        <div class="form-control">
+                          <div [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                            <div class="dx-field-label">VATTypeNo</div>
+                            <div class="dx-field-value">
+                              <dx-select-box
+                                valueExpr="VATTypeNo"
+                                displayExpr="aName"
+                                [items]="vattypes" 
+                                formControlName="VATTypeNo"
+                                placeholder="Choose VAT Type"
+                                [showClearButton]="true"
+                              ></dx-select-box>
+                            </div>
+                        </div>
+                      </div>
+                    </dxi-item>
+                    <dxi-item class="filter-form-item">
+                      <dxi-location
+                      [row]="0"
+                      [col]="1"
+                    ></dxi-location>
+                      <div class="form-control">
+                        <ion-button size="small" class="dark-button" expand="block">
+                          Apply VAT Effect
+                        </ion-button>
+                      </div>
+                    </dxi-item>
+                  </dx-responsive-box>
+                </div>
+                  
+                  
+              </dxi-item>
+              <!-- end vat type -->
+              <!-- note -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="2"
+                  [col]="0"
+                  [rowspan]="3"
+                  screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <div  [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                  <div class="dx-field-label">Note</div>
+                  <div class="dx-field-value" >
+                    <!-- <dx-number-box  placeholder="VAT #" formControlName="VATGroupNo"></dx-number-box> -->
+                    <dx-text-area
+                      formControlName="note"
+                      [height]="136"
+                      [autoResizeEnabled]="true"
+                    >
+                    </dx-text-area>
+                  </div>
+                  </div>
+                </div>
+              </dxi-item>
+              <!-- end note -->
+
+              <!-- original bill #-->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="2"
+                  [col]="1"
+                  screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <div  [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                    <div class="dx-field-label">Original bill #</div>
+                    <div class="dx-field-value" >
+                      <dx-number-box  placeholder="Original bill #" formControlName="billNo"></dx-number-box>
+                    </div>
+                  </div>
+              </div>
+              </dxi-item>
+              <!-- end original bill #-->
+
+              <!-- vat # -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="3"
+                  [col]="1"
+                  screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <div  [ngClass]="{'flex-row': labelPosition == 'left', 'flex-column': labelPosition == 'top'}">
+                  <div class="dx-field-label">VAT #</div>
+                  <div class="dx-field-value" >
+                    <dx-number-box  placeholder="VAT #" formControlName="VATGroupNo"></dx-number-box>
+                  </div>
+                  </div>
+                </div>
+              </dxi-item>
+              <!-- end  vat # -->
+              <!-- return invoice -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="4"
+                  [col]="1"
+                  screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <ion-button size="small" class="dark-button" expand="block">
+                    Return Invoice
+                  </ion-button>
+                </div>
+                  
+              </dxi-item>
+              <!-- end return invoice -->
+              <!-- print -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="5"
+                  [col]="1"
+                  screen="md lg"
+                ></dxi-location>
+                <div class="form-control">
+                  <ion-button size="small" class="dark-button" expand="block">
+                    Print
+                  </ion-button>
+                </div>
+                  
+              </dxi-item>
+              <!-- end print -->
+              <!-- posted -->
+              <dxi-item class="filter-form-item">
+                <dxi-location
+                  [row]="5"
+                  [col]="0"
+                  screen="md lg"
+                ></dxi-location>
+                  <div class="form-control">
+                    <div class="flex-row">
+
+                      <div class="dx-field-value ion-text-start">
+                        <dx-check-box  formControlName="isPosted"></dx-check-box>
+                      </div>
+                      <div class="dx-field-label ion-text-end">Posted</div>
+                    </div>
+                  </div>
+              </dxi-item>
+              <!-- end posted -->
+
+              <!-- end large screen -->
+            </dx-responsive-box>
+</div>
